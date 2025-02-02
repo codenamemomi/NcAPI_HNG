@@ -51,7 +51,7 @@ def get_properties(n):
     return properties
 
 
-@NcApi.route('/number/<num>', methods=['GET'])
+@NcApi.route('/<num>', methods=['GET'])
 def get_num_info(num):
     try:
         #error handling to give the response if the input is an alphabet
@@ -63,7 +63,7 @@ def get_num_info(num):
 
         num = int(num)
 
-        
+
         num_response = requests.get(NUMBERS_API_URL.format(num))
         num_response.raise_for_status()  # Raise an error for bad responses
         num_data = num_response.json()
