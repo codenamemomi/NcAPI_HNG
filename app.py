@@ -11,7 +11,6 @@ CORS(NcApi)
 
 
 NUMBERS_API_URL = 'http://numbersapi.com/{}/math?json=true'
-WIKIPEDIA_API_URL = 'https://en.wikipedia.org/api/rest_v1/page/summary/{}'
 
 def is_prime(n):
     #very important alost skipped my mind
@@ -69,9 +68,6 @@ def get_num_info(num):
         num_data = num_response.json()
 
 
-        wiki_response = requests.get(WIKIPEDIA_API_URL.format(num))
-        wiki_response.raise_for_status()  # Raise an error for bad responses
-        wiki_data = wiki_response.json()
 
         # Calculating the added infos
         prime = is_prime(num)
