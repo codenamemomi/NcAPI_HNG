@@ -50,7 +50,7 @@ def get_properties(n):
     return properties
 
 
-@NcApi.route('/number/<num>', methods=['GET'])
+@NcApi.route('/api/classify-number/<num>', methods=['GET'])
 def get_num_info(num):
     try:
         if num == '':
