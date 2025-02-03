@@ -9,6 +9,31 @@ The Number Classification API built with the use of Flask framework, it is a ser
 - Check if a number is an Armstrong number.
 - Retrieve fun facts about numbers from Numbers API.
 
+
+## API Endpoint
+### Classify Number
+- **Endpoint**: `/api/classify-number/`
+- **Method**: `GET`
+- **Query Params**:
+  - `number`: The number to classify (required).
+
+### Example Request
+```
+GET http://localhost:5000/api/classify-number/?number=5
+```
+
+### Example Response
+```json
+{
+  "number": 5,
+  "is_prime": true,
+  "is_perfect": false,
+  "properties": ["odd"],
+  "digit_sum": 5,
+  "fun_fact": "5 is a prime number."
+}
+```
+
 ## Installation
 1. Clone the repository:
    ```bash
@@ -28,6 +53,5 @@ Run the application:
 ```bash
 python app.py
 ```
-Access the API at `http://localhost:5000/number/<num>`, where the input `<num>` is the number you want to inquire about.
-
+Access the API at `http://localhost:5000/api/classify-number/?number=<num>`, where `<num>` is the number you want to inquire about.
 
