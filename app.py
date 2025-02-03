@@ -50,9 +50,12 @@ def get_properties(n):
     return properties
 
 
-@NcApi.route('/<num>', methods=['GET'])
+@NcApi.route('/number/<num>', methods=['GET'])
 def get_num_info(num):
     try:
+        if num == '':
+            return jsonify({'error': 'Please enter a number'}), 400
+        
         #error handling to give the response if the input is an alphabet
         if not num.isdigit():
             return jsonify({
@@ -90,11 +93,21 @@ def get_num_info(num):
 
     except requests.exceptions.RequestException as e:
         logging.error(f"API request failed: {e}")
-        return jsonify({"error": "API request failed"}), 500
+        return jsonify({"error": "API request failed", "details": str(e)}), 500
+    except KeyError as e:
+        logging.error(f"KeyError occurred: {e}")
+        return jsonify({"error": "Data format mismatch", "details": str(e)}), 500
     except Exception as e:
-        logging.error(f"An error occurred: {e}")
-        return jsonify({"error": "An internal error occurred"}), 500
-    
+        logging.error(f"An unexpected error occurred: {e}")
+        return jsonify({"error": "An internal error occurred", "details": str(e)}), 500
+
+@NcApi.errorhandler(404)
+def not_found_error(error):
+    return jsonify({
+        'error': 'The requested URL was not or you did not input any number.',
+        'message': 'Please check the URL correct your mistake and try again.'
+    }), 404
+
 
 if __name__ == '__main__':
     NcApi.run(debug=True)
