@@ -53,5 +53,5 @@ Run the application:
 ```bash
 python app.py
 ```
-Access the API at `http://localhost:5000/api/classify-number/?number=<num>`, where `<num>` is the number you want to inquire about.
+Access the API at `http://127.0.0.1:5000/api/classify-number/?number=<num>`, where `<num>` is the number you want to inquire about.
 
