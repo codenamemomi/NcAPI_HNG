@@ -104,7 +104,7 @@ def get_num_info(num):
 @NcApi.errorhandler(404)
 def not_found_error(error):
     return jsonify({
-        'error': 'The requested URL was not or you did not input any number.',
+        'error': 'The requested URL is not valid or you did not input any number after the URL (api/classify-number/(missing)).',
         'message': 'Please check the URL correct your mistake and try again.'
     }), 404
 
