@@ -56,8 +56,6 @@ def get_num_info():
     try:
         num = request.args.get('number')
 
-        num = int(num.strip())
-
 
         if num is None or num == '':
             return jsonify({'error': 'input a number to continue using the "number" query params.'}), 400
