@@ -104,12 +104,6 @@ def get_num_info():
         logging.error(f"An unexpected error occurred: {e}")
         return jsonify({"error": "An internal error occurred", "details": str(e)}), 500
 
-# @NcApi.errorhandler(404)
-# def not_found_error(error):
-#     return jsonify({
-#         'error': 'The requested URL is not valid or you did not input any number after the URL (api/classify-number/(missing)).',
-#         'message': 'Please check the URL correct your mistake and try again.'
-#     }), 404
 
 
 if __name__ == '__main__':
