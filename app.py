@@ -30,10 +30,11 @@ def is_perfect(n):
 
 def digit_sum(n):
     #possible summation
-    return sum(int(digit) for digit in str(n))
+    return sum(int(digit) for digit in str(abs(n)))
 
 def is_armstrong(n):
     #really tried my best not check google for the meaning of this 😂😂😂😂
+    n = abs(n)
     digits = [int(digit) for digit in str(n)]
     num_digits = len(digits)
     return sum(digit ** num_digits for digit in digits) == n
@@ -55,18 +56,22 @@ def get_num_info():
     try:
         num = request.args.get('number')
 
+        num = int(num.strip())
+
 
         if num is None or num == '':
             return jsonify({'error': 'input a number to continue using the "number" query params.'}), 400
         
         #error handling to give the response if the input is an alphabet
-        if not num.isdigit():
+
+        try:
+            num = int(num)
+        except ValueError:
             return jsonify({
                 'number': 'alphabet',
                 'error': True
             }), 400
 
-        num = int(num)
 
 
         num_response = requests.get(NUMBERS_API_URL.format(num))
@@ -76,8 +81,8 @@ def get_num_info():
 
 
         # Calculating the added infos
-        prime = is_prime(num)
-        perfect = is_perfect(num)
+        prime = is_prime(abs(num))
+        perfect = is_perfect(abs(num))
         sum_digits = digit_sum(num)
         properties = get_properties(num)
 
